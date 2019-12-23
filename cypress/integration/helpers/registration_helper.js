@@ -1,4 +1,4 @@
-export class RegisterationApi {
+class RegisterationApi {
 
     RegistrationApiRequest() {
         cy.request({
@@ -16,9 +16,9 @@ export class RegisterationApi {
                     'X-CSRFToken': $csrfToken,
                 },
                 body: {
-                    email: 'usman.musharaf+010@arbisoft.com',
+                    email: 'usman.musharaf+011@arbisoft.com',
                     name: 'usman musharaf',
-                    username: 'edxusman',
+                    username: 'edxusman011',
                     password: '72326edx',
                     country: 'PK',
                     honor_code: true

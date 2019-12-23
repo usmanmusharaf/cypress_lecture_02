@@ -1,5 +1,6 @@
 import register from '../helpers/registration_helper'
 import dashboard from '../page_objects/dashboard'
+import location_helper from '../helpers/location_helper'
 
 describe('Registration and login tests', () => {
 
@@ -14,17 +15,19 @@ describe('Registration and login tests', () => {
         cy.visit('/') // visit baseURL defined in cypress.json
     })
 
-    it('lets the user register to the application', () => {
-        cy.title().should('contain', 'edX')
+    it('verifies user is on dashboard page ', () => {
+        location_helper.CheckPageLocation('/dashboard/')
+        cy.title().should('contain', 'Dashboard')
     })
 
-    it('verifies user is logged in after registration', () => {
+    it('verifies Explore New Courses text to be present', () => {
         cy.get('.btn-neutral').should('contain.text', 'Explore New Courses')
     })
 
-    it('verifies mycourse section is present and user can click on mycourse btn', () => {
+    it('verifies mycourse section is present and navigates user to course page', () => {
         cy.get('.header-courses').should('contain.text', 'My Courses')
         dashboard.exploreBtn().click() // clicks on explore button on dashboard
+        location_helper.CheckPageLocation('/course')
     })
 })
 

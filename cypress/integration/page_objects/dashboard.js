@@ -1,8 +1,3 @@
-class Dashboard {
-
-    dashboardLinkText() {
-        return cy.get('nav[aria-label="Account"] a').contains('Register')
-    }
-}
+class Dashboard { }
 
 export default new Dashboard

@@ -1,5 +1,4 @@
 import register from '../helpers/registration_helper'
-import dashboard from '../page_objects/dashboard'
 
 describe('Login tests', () => {
     beforeEach(() => {

@@ -1,0 +1,4 @@
+{
+    "baseUrl": "https://courses.stage.edx.org/register?next=%2Fregister%2F",
+    "pageLoadTimeout": 100000
+}

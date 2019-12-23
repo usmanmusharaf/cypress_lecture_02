@@ -16,7 +16,7 @@ describe('Login tests', () => {
     })
 
     it('verifies user is logged in after registration', () => {
-        cy.get('.username').should('contain.text', 'usman')
+        cy.get('.btn-neutral').should('contain.text', 'Explore New Courses')
     })
 })
 

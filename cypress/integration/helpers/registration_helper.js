@@ -16,10 +16,10 @@ class RegisterationApi {
                     'X-CSRFToken': $csrfToken,
                 },
                 body: {
-                    email: 'usman.musharaf+025@arbisoft.com',
+                    email: Cypress.env('email'),
                     name: 'usman musharaf',
-                    username: 'usman025',
-                    password: 'edx72326',
+                    username: Cypress.env('username'),
+                    password: Cypress.env('password'),
                     country: 'PK',
                     honor_code: true
                 }

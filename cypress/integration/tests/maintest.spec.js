@@ -1,15 +1,23 @@
 import register from '../helpers/registration_helper'
+import dashboard from '../page_objects/dashboard'
 
 describe('Login tests', () => {
     beforeEach(() => {
         Cypress.Cookies.preserveOnce('stage-edx-sessionid', 'edxloggedin', 'stage-edx-user-info', 'csrftoken')
         cy.visit('/')
+    })
+
+    before(() => {
         register.RegistrationApiRequest()
     })
 
     it('lets the user register to the application', () => {
-        cy.title().should('contain', 'Register')
+        cy.title().should('contain', 'edX')
     })
 
+    it('verifies user is logged in after registration', () => {
+        cy.get('.username').should('contain.text', 'usman')
+    })
 })
+
 

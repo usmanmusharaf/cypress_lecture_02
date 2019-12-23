@@ -16,10 +16,10 @@ class RegisterationApi {
                     'X-CSRFToken': $csrfToken,
                 },
                 body: {
-                    email: 'usman.musharaf+011@arbisoft.com',
+                    email: 'usman.musharaf+025@arbisoft.com',
                     name: 'usman musharaf',
-                    username: 'edxusman011',
-                    password: '72326edx',
+                    username: 'usman025',
+                    password: 'edx72326',
                     country: 'PK',
                     honor_code: true
                 }

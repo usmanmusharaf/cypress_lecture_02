@@ -1,0 +1,19 @@
+{
+    "valid_data": {
+        "email": "usman.musharaf+033@arbisoft.com",
+        "username": "usman033",
+        "password": "edx72326"
+    },
+
+    "invalid_email": {
+        "email": "usman.musharaf+033arbisoftcom",
+        "username": "usman0006",
+        "password": "edx619000"
+    },
+
+    "invalid_username": {
+        "email": "usman.musharaf+0001arbisoftcom",
+        "username": "u",
+        "password": "edx619000"
+    }
+}

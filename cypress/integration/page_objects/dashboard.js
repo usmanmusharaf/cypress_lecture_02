@@ -1,8 +1,7 @@
 class Dashboard {
-
     exploreBtn() {
-        return cy.get('.btn-primary')
+        return cy.get(".btn-primary");
     }
 }
 
-export default new Dashboard
+export default new Dashboard();

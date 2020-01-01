@@ -1,19 +1,22 @@
 {
     "valid_data": {
-        "email": "usman.musharaf+033@arbisoft.com",
-        "username": "usman033",
+        "email": "usman.musharaf+0047@arbisoft.com",
+        "fullname": "Usman Musharaf",
+        "username": "usman0047",
         "password": "edx72326"
     },
 
     "invalid_email": {
         "email": "usman.musharaf+033arbisoftcom",
+        "fullname": "Usman Musharaf",
         "username": "usman0006",
-        "password": "edx619000"
+        "password": "edx619adaj0"
     },
 
-    "invalid_username": {
-        "email": "usman.musharaf+0001arbisoftcom",
-        "username": "u",
+    "existing_username": {
+        "email": "usman.musharaf+111@arbisoft.com",
+        "fullname": "Usman Musharaf",
+        "username": "usman0043",
         "password": "edx619000"
     }
 }

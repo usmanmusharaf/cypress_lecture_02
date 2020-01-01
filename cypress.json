@@ -1,5 +1,5 @@
 {
-    "baseUrl": "https://courses.stage.edx.org/dashboard",
+    "baseUrl": "https://courses.stage.edx.org/",
     "integrationFolder": "cypress/integration/tests",
     "pageLoadTimeout": 100000
 }

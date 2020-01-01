@@ -5,7 +5,7 @@ You can create your own cypress.env.json file to run the test
 */
 
 class RegisterationApi {
-    RegistrationApiRequest() {
+    RegistrationApiRequest(_email, _username, _password) {
         cy.request({
             method: "GET",
             url: "https://courses.stage.edx.org/register"
@@ -20,18 +20,19 @@ class RegisterationApi {
                         "https://courses.stage.edx.org/user_api/v1/account/registration/",
                     form: true,
                     headers: {
-                        Referer: "https://insurify.com",
                         "X-CSRFToken": $csrfToken
                     },
                     body: {
                         // form data in request body
-                        email: Cypress.env("email"),
+                        email: _email,
                         name: "usman musharaf",
-                        username: Cypress.env("username"),
-                        password: Cypress.env("password"),
+                        username: _username,
+                        password: _password,
                         country: "PK",
                         honor_code: true
                     }
+                }).then(response => {
+                    expect(response.status).to.eq(400);
                 });
             });
     }

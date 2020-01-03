@@ -1,11 +1,16 @@
 {
     "valid_data": {
-        "email": "usman.musharaf+0047@arbisoft.com",
+        "email": "usman.musharaf+0073@arbisoft.com",
         "fullname": "Usman Musharaf",
-        "username": "usman0047",
+        "username": "usman0073",
         "password": "edx72326"
     },
-
+    "existing_email": {
+        "email": "usman.musharaf+0050@arbisoft.com",
+        "fullname": "Usman Musharaf",
+        "username": "usman0050",
+        "password": "edx72326"
+    },
     "invalid_email": {
         "email": "usman.musharaf+033arbisoftcom",
         "fullname": "Usman Musharaf",

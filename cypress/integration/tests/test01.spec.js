@@ -2,13 +2,12 @@ import register from "../helpers/registration_helper";
 import dashboard from "../page_objects/dashboard";
 import location_helper from "../helpers/location_helper";
 import registeration_page from "../page_objects/registeration_page";
+import registration_helper from "../helpers/registration_helper";
 
 describe("Registration and login tests", () => {
     beforeEach(() => {
         cy.visit("/");
         dashboard.registerBtn();
-    });
-    afterEach(() => {
         Cypress.Cookies.preserveOnce(
             "stage-edx-sessionid",
             "edxloggedin",
@@ -38,7 +37,7 @@ describe("Registration and login tests", () => {
         );
     });
 
-    it("should display user already exists message", () => {
+    it("should display username already exists message to the user", () => {
         cy.fixture("registration.json").then(data => {
             const existing_username = data.existing_username;
             registeration_page.fill_in_registration_field(
@@ -53,7 +52,27 @@ describe("Registration and login tests", () => {
         cy.get("#register-username-validation-error-msg").should(
             validation_message => {
                 expect(validation_message).to.contain(
-                    "belongs to an existing account"
+                    "Try again with a different username"
+                );
+            }
+        );
+    });
+
+    it("should display email-id already exists message to the user", () => {
+        cy.fixture("registration.json").then(data => {
+            const existing_email = data.existing_email;
+
+            registeration_page.fill_in_registration_field(
+                existing_email.email,
+                existing_email.fullname,
+                existing_email.username,
+                existing_email.password
+            );
+        });
+        cy.get("#register-email-validation-error-msg").should(
+            validation_message => {
+                expect(validation_message).to.contain(
+                    "Try again with a different email address"
                 );
             }
         );
@@ -62,21 +81,11 @@ describe("Registration and login tests", () => {
     it("should let user register successfully", () => {
         cy.fixture("registration.json").then(data => {
             const valid = data.valid_data;
-            registeration_page.fill_in_registration_field(
+            registration_helper.RegistrationApiRequest(
                 valid.email,
-                valid.fullname,
                 valid.username,
                 valid.password
             );
-            registeration_page.select_country("PK");
-            cy.server();
-            cy.route("POST", "/user_api/v1/account/registration/").as(
-                "registerRequest"
-            );
-            registeration_page.register_button();
-            cy.wait("@registerRequest", { timeout: 70000 })
-                .its("status")
-                .should("eq", 200);
         });
     });
 });

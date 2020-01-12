@@ -1,13 +1,16 @@
-import register from "../helpers/registration_helper";
-import dashboard from "../page_objects/dashboard";
-import location_helper from "../helpers/location_helper";
 import registeration_page from "../page_objects/registeration_page";
 import registration_helper from "../helpers/registration_helper";
+import home_page from "../page_objects/home_page";
+import dashboard_page from "../page_objects/dashboard_page";
+import course_page from "../page_objects/course_page";
 
 describe("Registration and login tests", () => {
+    before(() => {
+        cy.clearCookies();
+    });
+
     beforeEach(() => {
         cy.visit("/");
-        dashboard.registerBtn();
         Cypress.Cookies.preserveOnce(
             "stage-edx-sessionid",
             "edxloggedin",
@@ -17,6 +20,7 @@ describe("Registration and login tests", () => {
     });
 
     it("should display email address not valid", () => {
+        home_page.registerBtn();
         cy.fixture("registration.json").then(data => {
             const invalid_email = data.invalid_email;
             registeration_page.fill_in_registration_field(
@@ -38,6 +42,7 @@ describe("Registration and login tests", () => {
     });
 
     it("should display username already exists message to the user", () => {
+        home_page.registerBtn();
         cy.fixture("registration.json").then(data => {
             const existing_username = data.existing_username;
             registeration_page.fill_in_registration_field(
@@ -59,6 +64,7 @@ describe("Registration and login tests", () => {
     });
 
     it("should display email-id already exists message to the user", () => {
+        home_page.registerBtn();
         cy.fixture("registration.json").then(data => {
             const existing_email = data.existing_email;
 
@@ -79,6 +85,7 @@ describe("Registration and login tests", () => {
     });
 
     it("should let user register successfully", () => {
+        home_page.registerBtn();
         cy.fixture("registration.json").then(data => {
             const valid = data.valid_data;
             registration_helper.RegistrationApiRequest(
@@ -86,6 +93,27 @@ describe("Registration and login tests", () => {
                 valid.username,
                 valid.password
             );
+        });
+    });
+
+    it("verify search functionality works fine for present courses", () => {
+        dashboard_page.exploreBtn();
+        course_page.searchCourse("python{enter}");
+        cy.get(".hide-phone").should(result => {
+            expect(result).to.contain("28 results matching");
+        });
+    });
+
+    it("verify all courses are displayed if the searched courses is not present", () => {
+        dashboard_page.exploreBtn();
+        course_page.searchCourse("cypress{enter}");
+        cy.get(".no-results>h3").should(result => {
+            expect(result).to.contain(
+                "We couldn't find any results for cypress"
+            );
+        });
+        cy.get(".hide-phone").should(result => {
+            expect(result).to.contain("2059 results matching");
         });
     });
 });
